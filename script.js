@@ -51,3 +51,52 @@ function convertToPostfix(expression) {
 
     return postfix.join(' ');
 }
+
+
+function evaluatePostfix(expression){
+    var Expression = expression.split(' ');
+    var stack = [];
+    var finalAnswer = 0;
+    len = Expression.length;
+    for(let i = 0;i<len;i++){
+        if(Expression[i].match(/\d/)){
+            stack.push(Expression[i]);
+        }
+        else{
+            switch(Expression[i]){
+                case '+':
+                    var b = stack.pop();
+                    var a = stack.pop();
+                    var c = add(a,b);
+                    stack.push(c);
+                    break;
+                case '-':
+                    var b = stack.pop();
+                    var a = stack.pop();
+                    var c = subtract(a,b);
+                    stack.push(c);
+                    break;
+                case '*':
+                    var b = stack.pop();
+                    var a = stack.pop();
+                    var c = multiply(a,b);
+                    stack.push(c);
+                    break;
+                case '/':
+                    var b = stack.pop();
+                    var a = stack.pop();
+                    var c = divide(a,b);
+                    stack.push(c);
+                    break;
+            }
+        }
+
+    }
+    finalAnswer = stack.pop();
+    return finalAnswer;
+}
+
+var expression = prompt("Enter your expression");
+var postfixExpression = convertToPostfix(expression);
+var answer = evaluatePostfix(postfixExpression);
+console.log("your answer is "+answer);
