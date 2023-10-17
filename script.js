@@ -14,29 +14,40 @@ function divide(a, b) {
     return (Number(a) / Number(b));
 }
 
-const operatorPrecedence = {
-    '+': 1,
-    '-': 1,
-    '*': 2,
-    '/': 2,
-};
 
 
-function convertToPostfix(expression){
+
+
+function convertToPostfix(expression) {
+    var Expression = (expression).split(' ');
+    var j = -1;
     var stack = [];
     var postfix = [];
-    len = expression.length;
-    for(let i = 0;i<len;i++){
-        if(expression[i].match(/\d/)){
-            postfix.push(i);
-        }
-        else if(stack.isEmpty()){
-            stack.push(i);
-        }
-        else{
-            if(operatorPrecedence[i]>operatorPrecedence[stack[stack.length-1]]){
-                
+    const operatorPrecedence = {
+        '+': 1,
+        '-': 1,
+        '*': 2,
+        '/': 2
+    };
+    len = Expression.length;
+
+    for (let i = 0; i < len; i++) {
+        if (Expression[i].match(/\d/)) {
+            postfix[++j] = Expression[i];
+        } else {
+            while (
+                stack.length > 0 &&
+                operatorPrecedence[Expression[i]] <= operatorPrecedence[stack[stack.length - 1]]
+            ) {
+                postfix[++j] = stack.pop();
             }
+            stack.push(Expression[i]);
         }
     }
+
+    while (stack.length > 0) {
+        postfix[++j] = stack.pop();
+    }
+
+    return postfix.join(' ');
 }
