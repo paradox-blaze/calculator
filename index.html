@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,38 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
+
 <body>
     <div class="calcBody">
-        <div class="screen"><input type="text" id ="calculatorScreen" pattern="[0-9+*/-]+"></div>
-        <div class="calcKeys"></div>
+        <div class="screen"><input type="text" id="calculatorScreen" pattern="[0-9+*/-]+"></div>
+        <div class="calcKeys">
+            <div class="clear">
+                <button id="clear">CLEAR</button>
+                <button id="delete">DELETE</button>
+            </div>
+            <div class="keys">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>/</button>
+
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>*</button>
+
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>-</button>
+
+                <button>.</button>
+                <button>0</button>
+                <button class="equalTo">=</button>
+                <button>+</button>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>

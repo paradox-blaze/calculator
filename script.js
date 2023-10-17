@@ -107,15 +107,28 @@ function evaluatePostfix(expression) {
 
 document.addEventListener('DOMContentLoaded', function () {
     var inputField = document.getElementById('calculatorScreen');
+
+    function setFocus() {
+        inputField.focus();
+    }
+
     inputField.addEventListener('input', function (event) {
         var inputValue = inputField.value;
-        var filteredValue = inputValue.replace(/[^0-9+*/-]/g, '');
-        if (filteredValue.match(/[+*/\-]{2}$/)) {
-            filteredValue = filteredValue.slice(0,filteredValue.length-2) + filteredValue[filteredValue.length-1]
+        inputValue = inputValue.replace(/(\.\d*\.|\d*\.\d*\.)/g, function (match) {
+            return match.replace(/\./g, '');
+        });
+        var filteredValue = inputValue.replace(/[^.0-9+*/-]/g, '');
+        if (filteredValue.match(/[+*./\-]{2}$/)) {
+            filteredValue = filteredValue.slice(0, filteredValue.length - 2) + filteredValue[filteredValue.length - 1]
         }
         inputField.value = filteredValue;
     });
 
+    var buttons = document.querySelectorAll('button');
+    buttons.forEach(function (button) {
+        button.addEventListener('click', setFocus);
+    });
+    setFocus();
     inputField.value = '';
-    inputField.focus();
 });
+

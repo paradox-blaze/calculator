@@ -1,10 +1,77 @@
-input{
+body {
+    background-color: #2b2a33;
+}
+
+input {
     background-color: #c8cac7;
     border: 12px #4b5561 solid;
     outline: none;
-    height: 5rem;
-    width: 20rem;
+    height: 7.5rem;
+    width: 20.64rem;
     caret-color: transparent;
     text-align: right;
-    
+    border-radius: 10px 10px 0 0;
+    font-size: 30px;
+
+
+}
+
+.screen {
+    margin-left: 35rem;
+    margin-top: 5rem;
+}
+
+.calcKeys {
+    margin-left: 35rem;
+    margin-top: 5rem;
+    background-color: #f2f3f5;
+    margin-top: 0;
+    padding: 10px;
+    width: 338px;
+    border-radius: 0 0 10px 10px;
+
+
+}
+
+.keys button {
+    width: 80px;
+    height: 80px;
+    border-radius: 10%;
+    border: 1px solid;
+    font-size: 20px;
+}
+
+.keys {
+    display: grid;
+    grid-template-columns: 75px 75px 75px 75px;
+    gap: 10px;
+
+}
+
+.clear button {
+    width: 165px;
+    margin-bottom: 10px;
+    height: 70px;
+    border: 1px solid;
+    border-radius: 5%;
+    font-size: 20px;
+}
+
+#clear {
+    background-color: #ae5c6b;
+    color: white;
+}
+
+#delete:hover {
+    background-color: rgb(43, 102, 238);
+
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.equalTo:hover {
+    background-color: rgb(36, 207, 36);
+    color: black;
 }
