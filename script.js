@@ -19,6 +19,15 @@ function divide(a, b) {
 
 
 function convertToPostfix(expression) {
+    if(expression.indexOf(' ')===-1){
+        const operatos = ['+','-','*','/'];
+        for(let i =0;i<expression.length;i++){
+            if(operatos.includes(expression[i])){
+                expression = expression.slice(0,i) + ' ' + expression[i] + ' ' + expression.slice(i+1);
+                i+=2;
+            }
+        }
+    }
     var Expression = (expression).split(' ');
     var j = -1;
     var stack = [];
