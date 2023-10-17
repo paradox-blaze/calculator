@@ -19,12 +19,12 @@ function divide(a, b) {
 
 
 function convertToPostfix(expression) {
-    if(expression.indexOf(' ')===-1){
-        const operatos = ['+','-','*','/'];
-        for(let i =0;i<expression.length;i++){
-            if(operatos.includes(expression[i])){
-                expression = expression.slice(0,i) + ' ' + expression[i] + ' ' + expression.slice(i+1);
-                i+=2;
+    if (expression.indexOf(' ') === -1) {
+        const operatos = ['+', '-', '*', '/'];
+        for (let i = 0; i < expression.length; i++) {
+            if (operatos.includes(expression[i])) {
+                expression = expression.slice(0, i) + ' ' + expression[i] + ' ' + expression.slice(i + 1);
+                i += 2;
             }
         }
     }
@@ -62,39 +62,39 @@ function convertToPostfix(expression) {
 }
 
 
-function evaluatePostfix(expression){
+function evaluatePostfix(expression) {
     var Expression = expression.split(' ');
     var stack = [];
     var finalAnswer = 0;
     len = Expression.length;
-    for(let i = 0;i<len;i++){
-        if(Expression[i].match(/\d/)){
+    for (let i = 0; i < len; i++) {
+        if (Expression[i].match(/\d/)) {
             stack.push(Expression[i]);
         }
-        else{
-            switch(Expression[i]){
+        else {
+            switch (Expression[i]) {
                 case '+':
                     var b = stack.pop();
                     var a = stack.pop();
-                    var c = add(a,b);
+                    var c = add(a, b);
                     stack.push(c);
                     break;
                 case '-':
                     var b = stack.pop();
                     var a = stack.pop();
-                    var c = subtract(a,b);
+                    var c = subtract(a, b);
                     stack.push(c);
                     break;
                 case '*':
                     var b = stack.pop();
                     var a = stack.pop();
-                    var c = multiply(a,b);
+                    var c = multiply(a, b);
                     stack.push(c);
                     break;
                 case '/':
                     var b = stack.pop();
                     var a = stack.pop();
-                    var c = divide(a,b);
+                    var c = divide(a, b);
                     stack.push(c);
                     break;
             }
@@ -105,7 +105,17 @@ function evaluatePostfix(expression){
     return finalAnswer;
 }
 
-var expression = prompt("Enter your expression");
-var postfixExpression = convertToPostfix(expression);
-var answer = evaluatePostfix(postfixExpression);
-console.log("your answer is "+answer);
+document.addEventListener('DOMContentLoaded', function () {
+    var inputField = document.getElementById('calculatorScreen');
+    inputField.addEventListener('input', function (event) {
+        var inputValue = inputField.value;
+        var filteredValue = inputValue.replace(/[^0-9+*/-]/g, '');
+        if (filteredValue.match(/[+*/\-]{2}$/)) {
+            filteredValue = filteredValue.slice(0,filteredValue.length-2) + filteredValue[filteredValue.length-1]
+        }
+        inputField.value = filteredValue;
+    });
+
+    inputField.value = '';
+    inputField.focus();
+});

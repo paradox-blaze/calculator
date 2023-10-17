@@ -1,0 +1,10 @@
+input{
+    background-color: #c8cac7;
+    border: 12px #4b5561 solid;
+    outline: none;
+    height: 5rem;
+    width: 20rem;
+    caret-color: transparent;
+    text-align: right;
+    
+}
