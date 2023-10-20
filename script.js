@@ -106,6 +106,7 @@ function evaluatePostfix(expression) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    var decimalAllowed = true;
     var inputField = document.getElementById('calculatorScreen');
 
     function setFocus() {
@@ -114,13 +115,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     inputField.addEventListener('input', function (event) {
         var inputValue = inputField.value;
-        inputValue = inputValue.replace(/(\.\d*\.|\d*\.\d*\.)/g, function (match) {
-            return match.replace(/\./g, '');
-        });
+
         var filteredValue = inputValue.replace(/[^.0-9+*/-]/g, '');
         if (filteredValue.match(/[+*./\-]{2}$/)) {
             filteredValue = filteredValue.slice(0, filteredValue.length - 2) + filteredValue[filteredValue.length - 1]
         }
+        if (filteredValue.match(/[+*/-]$/)) {
+            decimalAllowed = true;
+        }
+        else if (filteredValue.match(/[.]$/)) {
+            if (decimalAllowed) {
+                decimalAllowed = false;
+            }
+            else {
+                filteredValue = filteredValue.replace(/[.]$/, '');
+            }
+        }
+        if (filteredValue.indexOf('.') === -1 || filteredValue.search(/[+*/-]*[\d]*[.][\d]*[+*/-]*/)===-1) {
+            decimalAllowed = true;
+        }
+
         inputField.value = filteredValue;
     });
 
