@@ -19,6 +19,10 @@ function divide(a, b) {
 
 
 function convertToPostfix(expression) {
+    if (expression[0] == '-') {
+        expression = '0' + expression;
+    }
+
     if (expression.indexOf(' ') === -1) {
         const operatos = ['+', '-', '*', '/'];
         for (let i = 0; i < expression.length; i++) {
@@ -127,8 +131,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function setFocus() {
         inputField.focus();
     }
-    inputField.addEventListener('keydown',function(event){
-        if(event.key == 'Enter'|| event.code == 13){
+    inputField.addEventListener('keydown', function (event) {
+        if (event.key == 'Enter' || event.code == 13) {
             giveAnswer();
         }
     });
