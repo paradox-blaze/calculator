@@ -11,32 +11,32 @@
 
 <body>
     <div class="calcBody">
-        <div class="screen"><input type="text" id="calculatorScreen" pattern="[0-9+*/-]+"></div>
+        <div class="screen"><input type="text" id="calculatorScreen"></div>
         <div class="calcKeys">
             <div class="clear">
-                <button id="clear">CLEAR</button>
-                <button id="delete">DELETE</button>
+                <button id="clear" onclick="clearField()">CLEAR</button>
+                <button id="delete" onclick="backspace()">DELETE</button>
             </div>
             <div class="keys">
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>/</button>
+                <button onclick="putOnScreen(this)" value="7">7</button>
+                <button onclick="putOnScreen(this)" value="8">8</button>
+                <button onclick="putOnScreen(this)" value="9">9</button>
+                <button onclick="putOnScreen(this)" value="/">/</button>
 
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>*</button>
+                <button onclick="putOnScreen(this)" value="4">4</button>
+                <button onclick="putOnScreen(this)" value="5">5</button>
+                <button onclick="putOnScreen(this)" value="6">6</button>
+                <button onclick="putOnScreen(this)" value="*">*</button>
 
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>-</button>
+                <button onclick="putOnScreen(this)" value="1">1</button>
+                <button onclick="putOnScreen(this)" value="2">2</button>
+                <button onclick="putOnScreen(this)" value="3">3</button>
+                <button onclick="putOnScreen(this)" value="-">-</button>
 
-                <button>.</button>
-                <button>0</button>
-                <button class="equalTo">=</button>
-                <button>+</button>
+                <button onclick="putOnScreen(this)" value=".">.</button>
+                <button onclick="putOnScreen(this)" value="0">0</button>
+                <button class="equalTo" onclick="giveAnswer()">=</button>
+                <button onclick="putOnScreen(this)" value="+">+</button>
             </div>
         </div>
     </div>

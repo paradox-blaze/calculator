@@ -105,13 +105,33 @@ function evaluatePostfix(expression) {
     return finalAnswer;
 }
 
+
+function giveAnswer() {
+    var inputField = document.getElementById('calculatorScreen');
+    var inputValue = inputField.value;
+    var postfixExpression = convertToPostfix(inputValue);
+    var finalAnswer = evaluatePostfix(postfixExpression);
+    inputField.value = finalAnswer;
+    if (inputField.value == 'undefined' || inputField.value == 'NaN') {
+        inputField.value = '';
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
+
     var decimalAllowed = true;
     var inputField = document.getElementById('calculatorScreen');
+
 
     function setFocus() {
         inputField.focus();
     }
+    inputField.addEventListener('keydown',function(event){
+        if(event.key == 'Enter'|| event.code == 13){
+            giveAnswer();
+        }
+    });
 
     inputField.addEventListener('input', function (event) {
         var inputValue = inputField.value;
@@ -131,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 filteredValue = filteredValue.replace(/[.]$/, '');
             }
         }
-        if (filteredValue.indexOf('.') === -1 || filteredValue.search(/[+*/-]*[\d]*[.][\d]*[+*/-]*/)===-1) {
+        if (filteredValue.indexOf('.') === -1 || filteredValue.search(/[+*/-]*[\d]*[.][\d]*[+*/-]*/) === -1) {
             decimalAllowed = true;
         }
 
@@ -146,3 +166,31 @@ document.addEventListener('DOMContentLoaded', function () {
     inputField.value = '';
 });
 
+
+function clearField() {
+    var inputField = document.getElementById('calculatorScreen');
+    inputField.value = '';
+}
+
+function backspace() {
+    var inputField = document.getElementById('calculatorScreen');
+    var inputValue = inputField.value;
+    inputField.value = inputValue.slice(0, inputValue.length - 1);
+}
+
+
+
+function putOnScreen(button) {
+    var inputField = document.getElementById('calculatorScreen');
+    buttonValue = button.value;
+    var inputValue = inputField.value;
+    inputValue = inputValue + buttonValue;
+    inputField.value = inputValue;
+
+
+    var inputEvent = new Event('input', {
+        bubbles: true,
+        cancelable: true
+    });
+    inputField.dispatchEvent(inputEvent);
+}

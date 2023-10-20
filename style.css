@@ -8,7 +8,7 @@ input {
     outline: none;
     height: 7.5rem;
     width: 20.64rem;
-    caret-color: transparent;
+    /* caret-color: transparent; */
     text-align: right;
     border-radius: 10px 10px 0 0;
     font-size: 30px;
